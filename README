@@ -1,0 +1,16 @@
+----------src------------
+base.py    #队列基类
+
+serverq.py #服务器端队列服务
+
+worker.py  #slaver服务，分布式处理函数进程
+
+clientoutput.py #客户端提交的任务由分布式处理后的结果返回的队列输出
+
+clientputwork.py #客户端向任务队列提交任务
+
+
+--------config----------
+hosts.py  #master,slaver主机配置
+
+log4j.py  #日志配置文件
