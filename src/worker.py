@@ -1,9 +1,9 @@
 #coding=utf-8
 
-__PATH__="/home/ocdc/DistributedProcess_py"
  
 import sys
-sys.path.append(__PATH__)
+import os
+sys.path.append(os.path.abspath('..'))
 from base import QueueManagerClient
 import time
 import requests
@@ -13,8 +13,8 @@ from config import log4j
 
 
 class MultiprocessWork:
-    task = None
-    result = None
+    __task = None
+    __result = None
     
     def __init__(self):
         for i in range(len(hosts.hostsAdd['master'])):
@@ -24,8 +24,39 @@ class MultiprocessWork:
                 log4j.logger.info("connect to queue...")
 
                 client.connect()
-                MultiprocessWork.task = client.get_task_queue()
-                MultiprocessWork.result = client.get_result_queue()
+                self.__task = client.get_task_queue()
+                self.__result = client.get_result_queue()
+    
+    """
+    利用装饰器
+    """      
+    @property
+    def task(self):
+        return self.__task
+    
+    @task.setter
+    def task(self,task):
+        self.__task = task            
+    
+    
+    @property
+    def result(self):
+        return self.__result
+    
+#     def get_task(self):
+#         return self.__task
+# 
+#     def set_task(self,task):
+#         self.__task = task
+#     
+#     
+#     def get_result(self):
+#         return self.__result
+#     
+#     def set_result(self,result):
+#         self.__result = result
+        
+        
     
 def get(url):
     start = time.time()

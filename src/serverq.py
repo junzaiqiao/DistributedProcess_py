@@ -1,9 +1,9 @@
 #coding=utf-8
 
-__PATH__="/home/ocdc/DistributedProcess_py"
 
 import sys
-sys.path.append(__PATH__)
+import os
+sys.path.append(os.path.abspath('..'))
 from base import QueueManagerServer
 from multiprocessing import Queue
 from multiprocessing import freeze_support
